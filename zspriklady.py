@@ -1,14 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan 22 10:03:01 2019
-
-@author: sku35268
-"""
-
 import tkinter as tk
 from random import randint
-from tkinter import LabelFrame, Radiobutton, Entry, Checkbutton
+from tkinter import LabelFrame, Radiobutton, Entry, Checkbutton, Label
 
 
 class Application(tk.Tk):
@@ -21,24 +13,42 @@ class Application(tk.Tk):
         self.bind("<Escape>", self.quit)
         self.operaceFrame = LabelFrame(self, text="Co chceš procvičit?", padx=5, pady=5)
         self.operaceFrame.pack()
-        self.bbn = tk.Checkbutton(self.operaceFrame, text="Sčítání", command=self.cb)
+        self.bbn = tk.Checkbutton(self.operaceFrame, text="Sčítání", command=self.plus)
         self.bbn.pack(anchor=tk.W)
-        self.bbn = tk.Checkbutton(self.operaceFrame, text="Odčítání", command=self.cb)
+        self.bbn = tk.Checkbutton(self.operaceFrame, text="Odčítání", command=self.minus)
         self.bbn.pack(anchor=tk.W)
-        self.bbn = tk.Checkbutton(self.operaceFrame, text="Násobení", command=self.cb)
+        self.bbn = tk.Checkbutton(self.operaceFrame, text="Násobení", command=self.krat)
         self.bbn.pack(anchor=tk.W)
-        self.bbn = tk.Checkbutton(self.operaceFrame, text="Dělení", command=self.cb)
+        self.bbn = tk.Checkbutton(self.operaceFrame, text="Dělení", command=self.deleno)
         self.bbn.pack(anchor=tk.W)
+        
+        
+        self.lblfr = LabelFrame(self, text='Příklad')
+        self.lblfr.pack()
+        
+        self.entcisloa = Label(self.lblfr,text=None, width=5)
+        self.entcisloa.grid(row=1, column=1)
+        
+        self.entznam = Label(self.lblfr,text=None, width=5)
+        self.entznam.grid(row=1, column=2)
+        
+        self.entcislob = Label(self.lblfr,text=None, width=5)
+        self.entcislob.grid(row=1, column=3)
+        
+        self.prkButton = tk.Button(self, text='Priklad', command=self.priklad)
+        self.prkButton.pack()
+        
         self.kkn = tk.Button(self, text='Vypočítej to!', command=self.vypocet)
         self.kkn.pack()
+        
         self.btn = tk.Button(self, text='Quit', command=self.quit)
         self.btn.pack()
 
     def quit(self, event=None):
         super().quit()
         
-    def cb(self, event=None): 
-        super(), self()          
+
+
     
     def plus(self):
         self.x = randint(1,99)
@@ -69,6 +79,9 @@ class Application(tk.Tk):
         funkce()
         print()
         print(self.x, funkce.__name__, self.y, '=', self.vysl)
+        
+    def priklad(self):
+        self.entcisloa.get(self.x)
     
 app = Application()
 app.mainloop()
